@@ -254,7 +254,47 @@ document.getElementById("notes").value="";
 }
 
 
+function deleteCustomer(id){
 
+
+let confirmDelete = confirm(
+
+"Are you sure you want to delete this customer?"
+
+);
+
+
+if(confirmDelete){
+
+
+let customers = getCustomers();
+
+
+customers = customers.filter(
+
+c => c.id !== id
+
+);
+
+
+
+localStorage.setItem(
+
+"customers",
+
+JSON.stringify(customers)
+
+);
+
+
+
+showCustomers();
+
+
+}
+
+
+}
 
 function showCustomers(){
 
@@ -298,8 +338,17 @@ ${c.name}
 📝 ${c.notes}
 
 
-</div>
+<br><br>
 
+
+<button onclick="deleteCustomer(${c.id})">
+
+🗑️ Delete Customer
+
+</button>
+
+
+</div>
 
 `;
 
