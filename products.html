@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Library - Fabric Fusion Studio</title>
+
+<style>
+
+body {
+background:#000;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:20px;
+}
+
+h1 {
+color:hotpink;
+}
+
+.card {
+background:#222;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+input, select, textarea {
+width:90%;
+padding:12px;
+margin:8px;
+border-radius:10px;
+border:none;
+font-size:16px;
+}
+
+button {
+width:90%;
+padding:15px;
+margin:8px;
+border-radius:15px;
+border:none;
+background:hotpink;
+font-weight:bold;
+font-size:16px;
+}
+
+.product {
+background:#111;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🩷 Product Library</h1>
+
+<div class="card">
+
+<input id="name" placeholder="Product Name">
+
+
+<select id="category">
+
+<option>🗝️ Keychains</option>
+<option>🏠 Home Decor</option>
+<option>🎁 Gifts</option>
+<option>🐉 Toys & Figures</option>
+<option>💼 Business Items</option>
+<option>✨ Custom Orders</option>
+
+</select>
+
+
+<input id="hours" placeholder="Print Hours">
+
+<input id="grams" placeholder="Filament Grams">
+
+<input id="price" placeholder="Selling Price">
+
+
+<textarea id="notes" placeholder="Notes"></textarea>
+
+
+<button onclick="saveProduct()">
+➕ Save Product
+</button>
+
+
+</div>
+
+
+<div id="products"></div>
+
+
+<script>
+
+function getProducts(){
+
+return JSON.parse(
+localStorage.getItem("products")
+) || [];
+
+}
+
+
+function saveProduct(){
+
+let product={
+
+id: Date.now(),
+
+name:
+document.getElementById("name").value,
+
+category:
+document.getElementById("category").value,
+
+hours:
+Number(document.getElementById("hours").value),
+
+grams:
+Number(document.getElementById("grams").value),
+
+price:
+Number(document.getElementById("price").value),
+
+notes:
+document.getElementById("notes").value
+
+};
+
+
+let products=getProducts();
+
+products.push(product);
+
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+
+showProducts();
+
+}
+
+
+function duplicateProduct(id){
+
+let products=getProducts();
+
+let original =
+products.find(p=>p.id===id);
+
+
+let copy={
+...original,
+id:Date.now(),
+name:original.name+" Copy"
+};
+
+
+products.push(copy);
+
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+
+showProducts();
+
+}
+
+
+
+function showProducts(){
+
+let products=getProducts();
+
+let html="";
+
+
+products.forEach(p=>{
+
+
+let material =
+p.grams * .026;
+
+
+let machine =
+p.hours * 3;
+
+
+let cost =
+material + machine;
+
+
+let profit =
+p.price - cost;
+
+
+html += `
+
+<div class="product">
+
+<h3>${p.name}</h3>
+
+${p.category}<br><br>
+
+🧵 ${p.grams}g filament<br>
+
+⏱ ${p.hours} hours<br>
+
+💲 Sell: $${p.price}<br>
+
+📦 Cost: $${cost.toFixed(2)}<br>
+
+🩷 Profit: $${profit.toFixed(2)}
+
+<br><br>
+
+<button onclick="duplicateProduct(${p.id})">
+📋 Duplicate Product
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("products").innerHTML=html;
+
+}
+
+
+showProducts();
+
+
+</script>
+
+
+</body>
+</html>
