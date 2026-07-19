@@ -339,7 +339,10 @@ p.price - cost;
 
 html += `
 
+html += `
 <div class="product">
+
+${p.photo ? `<img src="${p.photo}" width="200">` : ""}
 
 <h3>${p.name}</h3>
 
