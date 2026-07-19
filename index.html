@@ -15,16 +15,33 @@ body {
 
 h1 {
   color: hotpink;
+  font-size: 32px;
 }
 
 .subtitle {
   font-size: 18px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #222;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+input, select {
+  width: 90%;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
 }
 
 button {
   width: 90%;
-  padding: 18px;
+  padding: 15px;
   margin: 10px;
   border-radius: 15px;
   border: none;
@@ -34,11 +51,17 @@ button {
   font-weight: bold;
 }
 
-.card {
-  background: #222;
-  padding: 20px;
-  border-radius: 20px;
+.result {
   margin-top: 20px;
+  background: #111;
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 18px;
+}
+
+.footer {
+  margin-top: 30px;
+  color: hotpink;
 }
 </style>
 
@@ -49,24 +72,98 @@ button {
 <h1>🩷 Fabric Fusion Studio</h1>
 
 <div class="subtitle">
+Welcome to Fabric Fusion Studio<br>
 Create • Customize • Profit
 </div>
 
+
 <div class="card">
 
-<button>🖨️ 3D Printing</button>
+<h2>🖨️ Bambu P1S 3D Print Pricing</h2>
 
-<button>🧵 Sublimation</button>
+<input id="hours" type="number" placeholder="Print hours">
 
-<button>🪡 Embroidery</button>
+<input id="minutes" type="number" placeholder="Print minutes">
 
-<button>✨ Combined Projects</button>
+<input id="grams" type="number" placeholder="Filament grams used">
+
+
+<select id="personalized">
+<option value="0">Not Personalized</option>
+<option value="5">Personalized (+$5)</option>
+</select>
+
+
+<select id="assembly">
+<option value="0">No Assembly</option>
+<option value="5">Assembly Needed (+$5)</option>
+</select>
+
+
+<select id="finish">
+<option value="0">No Finishing</option>
+<option value="5">Finishing Needed (+$5)</option>
+</select>
+
+
+<button onclick="calculate()">
+✨ Calculate Price
+</button>
+
+
+<div class="result" id="result">
+Your price will appear here
+</div>
 
 </div>
 
-<p>
-Fabric Fusion by Ashlee
-</p>
+
+<div class="footer">
+Fabric Fusion by Ashlee 🩷
+</div>
+
+
+<script>
+
+function calculate(){
+
+let hours = Number(document.getElementById("hours").value) || 0;
+let minutes = Number(document.getElementById("minutes").value) || 0;
+let grams = Number(document.getElementById("grams").value) || 0;
+
+let printTime = hours + (minutes / 60);
+
+let filament = grams * 0.026;
+
+let machine = printTime * 3;
+
+let personalized = Number(document.getElementById("personalized").value);
+
+let assembly = Number(document.getElementById("assembly").value);
+
+let finish = Number(document.getElementById("finish").value);
+
+let packaging = 1;
+
+let total = filament + machine + personalized + assembly + finish + packaging;
+
+let suggested = Math.ceil(total / 5) * 5;
+
+
+document.getElementById("result").innerHTML =
+`
+Filament: $${filament.toFixed(2)}<br>
+Printer Time: $${machine.toFixed(2)}<br>
+Extras: $${(personalized+assembly+finish).toFixed(2)}<br>
+Packaging: $${packaging.toFixed(2)}
+<br><br>
+🩷 Suggested Price:<br>
+<strong>$${suggested}</strong>
+`;
+
+}
+
+</script>
 
 </body>
 </html>
