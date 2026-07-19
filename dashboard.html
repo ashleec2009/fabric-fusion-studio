@@ -279,13 +279,14 @@ localStorage.getItem("customers")
 
 ) || [];
 
-alert("Customers found: " + customers.length);
   
+window.onload = function(){
+
 document.getElementById(
-
 "customerCount"
-
 ).innerHTML = customers.length;
+
+};
 
 let activeOrders = orders.filter(
 o => o.status !== "🎉 Delivered"
