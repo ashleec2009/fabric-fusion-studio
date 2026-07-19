@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Filament Inventory</title>
+
+<style>
+body {
+  background:#000;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  padding:20px;
+}
+
+h1 {
+  color:hotpink;
+}
+
+.card {
+  background:#222;
+  padding:20px;
+  border-radius:20px;
+}
+
+input, select {
+  width:90%;
+  padding:12px;
+  margin:8px;
+  border-radius:10px;
+  border:none;
+}
+
+button {
+  width:90%;
+  padding:15px;
+  margin:10px;
+  border-radius:15px;
+  border:none;
+  background:hotpink;
+  font-weight:bold;
+}
+
+.filament {
+  background:#111;
+  margin-top:15px;
+  padding:15px;
+  border-radius:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🧵 Filament Inventory</h1>
+
+<div class="card">
+
+<input id="name" placeholder="Filament name">
+
+<select id="category">
+<option>Standard</option>
+<option>Specialty</option>
+</select>
+
+<input id="cost" placeholder="Spool cost">
+
+<input id="weight" placeholder="Spool grams">
+
+<button onclick="addNewFilament()">
+➕ Save Filament
+</button>
+
+<div id="list"></div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+<script>
+
+function addNewFilament(){
+
+addFilament(
+document.getElementById("name").value,
+document.getElementById("category").value,
+document.getElementById("cost").value,
+document.getElementById("weight").value
+);
+
+showFilaments();
+
+}
+
+
+function showFilaments(){
+
+let filaments=getFilaments();
+
+let html="";
+
+filaments.forEach(f=>{
+
+let perGram =
+(f.cost/f.weight).toFixed(3);
+
+html += `
+<div class="filament">
+
+<strong>${f.name}</strong><br>
+
+${f.category}<br>
+
+$${f.cost} / ${f.weight}g<br>
+
+Cost per gram:
+$${perGram}
+
+</div>
+`;
+
+});
+
+document.getElementById("list").innerHTML=html;
+
+}
+
+
+showFilaments();
+
+</script>
+
+
+</body>
+</html>
