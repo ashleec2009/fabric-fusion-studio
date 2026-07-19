@@ -80,7 +80,6 @@ margin-top:15px;
 
 <input id="price" placeholder="Selling Price">
 
-<input id="photo" type="file" accept="image/*">
 
 <textarea id="notes" placeholder="Notes"></textarea>
 
@@ -108,35 +107,6 @@ localStorage.getItem("products")
 
 function saveProduct(){
 
-let file =
-document.getElementById("photo").files[0];
-
-
-if(file){
-
-let reader = new FileReader();
-
-reader.onload = function(event){
-
-saveProductData(event.target.result);
-
-};
-
-reader.readAsDataURL(file);
-
-
-} else {
-
-saveProductData("");
-
-}
-
-}
-
-
-
-function saveProductData(photo){
-
 let product = {
 
 id: Date.now(),
@@ -148,15 +118,13 @@ category:
 document.getElementById("category").value,
 
 hours:
-Number(document.getElementById("hours").value) || 0,
+Number(document.getElementById("hours").value),
 
 grams:
-Number(document.getElementById("grams").value) || 0,
+Number(document.getElementById("grams").value),
 
 price:
-Number(document.getElementById("price").value) || 0,
-
-photo: photo,
+Number(document.getElementById("price").value),
 
 notes:
 document.getElementById("notes").value
