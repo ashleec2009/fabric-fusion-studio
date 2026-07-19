@@ -163,7 +163,22 @@ JSON.stringify(products)
 showProducts();
 
 }
-  
+function deleteProduct(id){
+
+let products = getProducts();
+
+products = products.filter(function(product){
+return product.id !== id;
+});
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+showProducts();
+
+}  
 showProducts(){
 
 
