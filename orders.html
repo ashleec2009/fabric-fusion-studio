@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fabric Fusion Studio - Creation Tracker</title>
+
+
+<style>
+
+body {
+background:#000;
+color:white;
+font-family:Arial, sans-serif;
+padding:20px;
+text-align:center;
+}
+
+
+h1 {
+color:hotpink;
+}
+
+
+.card {
+
+background:#1c1c1c;
+border-radius:25px;
+padding:20px;
+margin:15px 0;
+
+}
+
+
+input, select, textarea {
+
+width:90%;
+padding:12px;
+margin:8px;
+border-radius:10px;
+border:none;
+font-size:16px;
+
+}
+
+
+button {
+
+width:90%;
+padding:15px;
+margin:8px;
+border:none;
+border-radius:20px;
+background:hotpink;
+font-size:16px;
+font-weight:bold;
+
+}
+
+
+.order {
+
+background:#111;
+padding:15px;
+border-radius:20px;
+margin-top:15px;
+
+}
+
+
+.status {
+
+color:hotpink;
+font-weight:bold;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+📋 Creation Tracker
+</h1>
+
+
+<p>
+Where ideas become creations ✨
+</p>
+
+
+
+<div class="card">
+
+
+<h2>
+➕ New Creation
+</h2>
+
+
+<input id="customer" placeholder="Customer Name">
+
+
+<input id="product" placeholder="Product / Custom Idea">
+
+
+<input id="quantity" placeholder="Quantity">
+
+
+<input id="due" type="date">
+
+
+<select id="assigned">
+
+<option>
+👩 Ashlee
+</option>
+
+<option>
+👨 Fusion Fam Production
+</option>
+
+</select>
+
+
+
+<select id="status">
+
+
+<option>
+✨ New Creation
+</option>
+
+
+<option>
+🎨 Preparing
+</option>
+
+
+<option>
+🖨️ Making Magic
+</option>
+
+
+<option>
+📦 Ready
+</option>
+
+
+<option>
+🎉 Delivered
+</option>
+
+
+</select>
+
+
+
+<textarea id="notes" placeholder="Creation Notes"></textarea>
+
+
+
+<button onclick="saveOrder()">
+
+➕ Save Creation
+
+</button>
+
+
+</div>
+
+
+
+
+<div id="orders"></div>
+
+
+
+
+<script>
+
+
+function getOrders(){
+
+return JSON.parse(
+
+localStorage.getItem("orders")
+
+) || [];
+
+}
+
+
+
+
+function saveOrder(){
+
+
+let order = {
+
+
+id:Date.now(),
+
+
+customer:
+
+document.getElementById("customer").value,
+
+
+product:
+
+document.getElementById("product").value,
+
+
+quantity:
+
+document.getElementById("quantity").value,
+
+
+due:
+
+document.getElementById("due").value,
+
+
+assigned:
+
+document.getElementById("assigned").value,
+
+
+status:
+
+document.getElementById("status").value,
+
+
+notes:
+
+document.getElementById("notes").value
+
+
+};
+
+
+
+let orders=getOrders();
+
+
+orders.push(order);
+
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+
+clearForm();
+
+showOrders();
+
+
+}
+
+
+
+function clearForm(){
+
+document.getElementById("customer").value="";
+
+document.getElementById("product").value="";
+
+document.getElementById("quantity").value="";
+
+document.getElementById("due").value="";
+
+document.getElementById("notes").value="";
+
+}
+
+
+
+
+function showOrders(){
+
+
+let orders=getOrders();
+
+
+let html="";
+
+
+orders.forEach(function(o){
+
+
+html += `
+
+
+<div class="order">
+
+
+<h3>
+${o.product}
+</h3>
+
+
+👤 ${o.customer}
+
+<br>
+
+📦 Quantity: ${o.quantity}
+
+<br>
+
+📅 Due: ${o.due}
+
+
+<br>
+
+👥 ${o.assigned}
+
+
+<br><br>
+
+
+<span class="status">
+
+${o.status}
+
+</span>
+
+
+<br><br>
+
+
+📝 ${o.notes}
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+document.getElementById("orders").innerHTML=html;
+
+
+}
+
+
+
+showOrders();
+
+
+
+</script>
+
+
+</body>
+
+</html>
