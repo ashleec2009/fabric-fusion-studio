@@ -289,7 +289,35 @@ document.getElementById("notes").value="";
 }
 
 
+function updateStatus(id, newStatus){
 
+
+let orders = getOrders();
+
+
+let order = orders.find(
+
+o => o.id === id
+
+);
+
+
+order.status = newStatus;
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+showOrders();
+
+
+}
 
 function showOrders(){
 
