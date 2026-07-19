@@ -273,7 +273,19 @@ let orders = JSON.parse(
 localStorage.getItem("orders")
 ) || [];
 
+let customers = JSON.parse(
 
+localStorage.getItem("customers")
+
+) || [];
+
+
+
+document.getElementById(
+
+"customerCount"
+
+).innerHTML = customers.length;
 
 let activeOrders = orders.filter(
 o => o.status !== "🎉 Delivered"
