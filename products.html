@@ -116,13 +116,11 @@ if(file){
 
 let reader = new FileReader();
 
+reader.onload = function(event){
 
-reader.onload = function(e){
-
-saveProductData(e.target.result);
+saveProductData(event.target.result);
 
 };
-
 
 reader.readAsDataURL(file);
 
@@ -150,13 +148,13 @@ category:
 document.getElementById("category").value,
 
 hours:
-Number(document.getElementById("hours").value),
+Number(document.getElementById("hours").value) || 0,
 
 grams:
-Number(document.getElementById("grams").value),
+Number(document.getElementById("grams").value) || 0,
 
 price:
-Number(document.getElementById("price").value),
+Number(document.getElementById("price").value) || 0,
 
 photo: photo,
 
@@ -166,7 +164,7 @@ document.getElementById("notes").value
 };
 
 
-let products=getProducts();
+let products = getProducts();
 
 products.push(product);
 
@@ -182,10 +180,6 @@ clearForm();
 showProducts();
 
 }
-
-
-
-function clearForm(){
 
 document.getElementById("name").value="";
 document.getElementById("hours").value="";
