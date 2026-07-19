@@ -147,10 +147,24 @@ localStorage.setItem(
 JSON.stringify(products)
 );
 
+function deleteProduct(id){
+
+let products = getProducts();
+
+products = products.filter(
+p => p.id !== id
+);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
 
 showProducts();
 
 }
+  
+showProducts(){
 
 
 function duplicateProduct(id){
