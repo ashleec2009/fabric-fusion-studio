@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fabric Fusion Studio - Customer Vault</title>
+
+
+<style>
+
+body {
+
+background:#000;
+
+color:white;
+
+font-family:Arial, sans-serif;
+
+padding:20px;
+
+text-align:center;
+
+}
+
+
+h1 {
+
+color:hotpink;
+
+}
+
+
+.card {
+
+background:#1c1c1c;
+
+border-radius:25px;
+
+padding:20px;
+
+margin:15px 0;
+
+}
+
+
+input, textarea {
+
+width:90%;
+
+padding:12px;
+
+margin:8px;
+
+border-radius:10px;
+
+border:none;
+
+font-size:16px;
+
+}
+
+
+button {
+
+width:90%;
+
+padding:15px;
+
+margin:8px;
+
+border:none;
+
+border-radius:20px;
+
+background:hotpink;
+
+font-size:16px;
+
+font-weight:bold;
+
+}
+
+
+.customer {
+
+background:#111;
+
+padding:15px;
+
+border-radius:20px;
+
+margin-top:15px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+👤 Customer Vault
+</h1>
+
+
+<p>
+Building relationships, one creation at a time ✨
+</p>
+
+
+
+<div class="card">
+
+
+<h2>
+➕ New Customer
+</h2>
+
+
+<input id="name" placeholder="Customer Name">
+
+
+<input id="phone" placeholder="Phone Number">
+
+
+<input id="email" placeholder="Email">
+
+
+<input id="address" placeholder="Address">
+
+
+<textarea id="notes" placeholder="Customer Notes"></textarea>
+
+
+
+<button onclick="saveCustomer()">
+
+Save Customer
+
+</button>
+
+
+</div>
+
+
+
+
+<div id="customers"></div>
+
+
+
+
+<script>
+
+
+function getCustomers(){
+
+return JSON.parse(
+
+localStorage.getItem("customers")
+
+) || [];
+
+}
+
+
+
+
+function saveCustomer(){
+
+
+let customer = {
+
+
+id:Date.now(),
+
+
+name:
+
+document.getElementById("name").value,
+
+
+phone:
+
+document.getElementById("phone").value,
+
+
+email:
+
+document.getElementById("email").value,
+
+
+address:
+
+document.getElementById("address").value,
+
+
+notes:
+
+document.getElementById("notes").value
+
+
+};
+
+
+
+let customers=getCustomers();
+
+
+customers.push(customer);
+
+
+
+localStorage.setItem(
+
+"customers",
+
+JSON.stringify(customers)
+
+);
+
+
+
+clearForm();
+
+showCustomers();
+
+
+}
+
+
+
+
+function clearForm(){
+
+
+document.getElementById("name").value="";
+
+document.getElementById("phone").value="";
+
+document.getElementById("email").value="";
+
+document.getElementById("address").value="";
+
+document.getElementById("notes").value="";
+
+
+}
+
+
+
+
+function showCustomers(){
+
+
+let customers=getCustomers();
+
+
+let html="";
+
+
+customers.forEach(function(c){
+
+
+html += `
+
+
+<div class="customer">
+
+
+<h3>
+
+${c.name}
+
+</h3>
+
+
+📞 ${c.phone}
+
+<br>
+
+📧 ${c.email}
+
+<br>
+
+🏠 ${c.address}
+
+
+<br><br>
+
+
+📝 ${c.notes}
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+document.getElementById("customers").innerHTML=html;
+
+
+}
+
+
+
+showCustomers();
+
+
+
+</script>
+
+
+</body>
+
+</html>
