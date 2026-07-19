@@ -190,7 +190,57 @@ showProducts();
 
 }
 
+function editProduct(id){
 
+let products = getProducts();
+
+let product = products.find(function(p){
+return p.id === id;
+});
+
+
+let newName = prompt(
+"Product Name:",
+product.name
+);
+
+let newHours = prompt(
+"Print Hours:",
+product.hours
+);
+
+let newGrams = prompt(
+"Filament Grams:",
+product.grams
+);
+
+let newPrice = prompt(
+"Selling Price:",
+product.price
+);
+
+let newNotes = prompt(
+"Notes:",
+product.notes
+);
+
+
+product.name = newName;
+product.hours = Number(newHours);
+product.grams = Number(newGrams);
+product.price = Number(newPrice);
+product.notes = newNotes;
+
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+
+showProducts();
+
+}
 
 function deleteProduct(id){
 
@@ -278,6 +328,10 @@ ${p.notes}
 
 <button onclick="duplicateProduct(${p.id})">
 📋 Duplicate Product
+</button>
+
+<button onclick="editProduct(${p.id})">
+✏️ Edit Product
 </button>
 
 <button onclick="deleteProduct(${p.id})">
