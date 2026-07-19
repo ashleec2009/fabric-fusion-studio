@@ -232,13 +232,13 @@ Coming Soon
 
 <script>
 
+<script>
 
 let products = JSON.parse(
 
 localStorage.getItem("products")
 
 ) || [];
-
 
 
 document.getElementById(
@@ -249,19 +249,11 @@ document.getElementById(
 
 
 
-</script>
-
-
-</body>
-
-</html>
-
 let orders = JSON.parse(
 
 localStorage.getItem("orders")
 
 ) || [];
-
 
 
 let activeOrders = orders.filter(
@@ -271,13 +263,11 @@ o => o.status !== "🎉 Delivered"
 );
 
 
-
 document.getElementById(
 
 "orderCount"
 
 ).innerHTML = activeOrders.length;
-
 
 
 let newCount = orders.filter(
@@ -287,13 +277,11 @@ o => o.status === "✨ New Creation"
 ).length;
 
 
-
 let preparingCount = orders.filter(
 
 o => o.status === "🎨 Preparing"
 
 ).length;
-
 
 
 let magicCount = orders.filter(
@@ -303,13 +291,11 @@ o => o.status === "🖨️ Making Magic"
 ).length;
 
 
-
 let readyCount = orders.filter(
 
 o => o.status === "📦 Ready"
 
 ).length;
-
 
 
 document.getElementById(
@@ -318,14 +304,22 @@ document.getElementById(
 
 ).innerHTML = `
 
-
 ✨ New Creation: ${newCount}<br>
-
 🎨 Preparing: ${preparingCount}<br>
-
 🖨️ Making Magic: ${magicCount}<br>
-
 📦 Ready: ${readyCount}
 
-
 `;
+
+
+</script>
+
+
+
+</script>
+
+
+</body>
+
+</html>
+
