@@ -235,73 +235,60 @@ Coming Soon
 <script>
 
 let products = JSON.parse(
-
 localStorage.getItem("products")
-
 ) || [];
 
 
 document.getElementById(
-
 "productCount"
-
 ).innerHTML = products.length;
 
 
 
 let orders = JSON.parse(
-
 localStorage.getItem("orders")
-
 ) || [];
 
 
+
 let activeOrders = orders.filter(
-
 o => o.status !== "🎉 Delivered"
-
 );
 
 
+
 document.getElementById(
-
 "orderCount"
-
 ).innerHTML = activeOrders.length;
 
 
+
 let newCount = orders.filter(
-
 o => o.status === "✨ New Creation"
-
 ).length;
+
 
 
 let preparingCount = orders.filter(
-
 o => o.status === "🎨 Preparing"
-
 ).length;
+
 
 
 let magicCount = orders.filter(
-
 o => o.status === "🖨️ Making Magic"
-
 ).length;
+
 
 
 let readyCount = orders.filter(
-
 o => o.status === "📦 Ready"
-
 ).length;
 
 
+
 document.getElementById(
-
 "orderBreakdown"
-
 ).innerHTML = `
 
 ✨ New Creation: ${newCount}<br>
