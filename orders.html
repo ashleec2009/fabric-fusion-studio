@@ -203,7 +203,47 @@ localStorage.getItem("orders")
 
 }
 
+function loadCustomers(){
 
+
+let customers = JSON.parse(
+
+localStorage.getItem("customers")
+
+) || [];
+
+
+let dropdown = document.getElementById(
+
+"customer"
+
+);
+
+
+
+customers.forEach(function(c){
+
+
+let option = document.createElement(
+
+"option"
+
+);
+
+
+option.value = c.name;
+
+
+option.textContent = c.name;
+
+
+dropdown.appendChild(option);
+
+
+});
+
+
+}
 
 
 function saveOrder(){
@@ -425,6 +465,8 @@ document.getElementById("orders").innerHTML=html;
 }
 
 
+
+loadCustomers();
 
 showOrders();
 
