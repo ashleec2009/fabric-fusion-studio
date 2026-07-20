@@ -279,7 +279,26 @@ showCustomers();
 
 
 }
+function toggleCustomerStatus(id){
 
+let customers = getCustomers();
+
+let customer = customers.find(c => c.id === id);
+
+customer.status =
+customer.status === "Active"
+? "Inactive"
+: "Active";
+
+localStorage.setItem(
+"customers",
+JSON.stringify(customers)
+);
+
+showCustomers();
+
+}
+  
 function showCustomers(){
 
 
@@ -331,6 +350,12 @@ Status:
 
 <br><br>
 
+
+<button onclick="toggleCustomerStatus(${c.id})">
+
+🔄 Toggle Active / Inactive
+
+</button>
 
 <button onclick="deleteCustomer(${c.id})">
 
