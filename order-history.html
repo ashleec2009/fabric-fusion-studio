@@ -81,6 +81,64 @@ Status: 🎉 Delivered
 
 });
 
+function restoreOrder(id){
+
+let history = JSON.parse(
+
+localStorage.getItem("orderHistory")
+
+) || [];
+
+
+let orders = JSON.parse(
+
+localStorage.getItem("orders")
+
+) || [];
+
+
+let order = history.find(
+
+o => o.id === id
+
+);
+
+
+order.status = "📦 Ready";
+
+
+orders.push(order);
+
+
+history = history.filter(
+
+o => o.id !== id
+
+);
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+localStorage.setItem(
+
+"orderHistory",
+
+JSON.stringify(history)
+
+);
+
+
+location.reload();
+
+}
+  
 </script>
 
 
