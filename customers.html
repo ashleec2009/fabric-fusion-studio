@@ -177,37 +177,21 @@ function saveCustomer(){
 
 let customer = {
 
+id: Date.now(),
 
-id:Date.now(),
+status: "Active",
 
-status:"active",
+name: document.getElementById("name").value,
 
-name:
+phone: "",
 
-document.getElementById("name").value,  
+email: "",
 
-phone:
+address: "",
 
-document.getElementById("phone").value,
-
-
-email:
-
-document.getElementById("email").value,
-
-
-address:
-
-document.getElementById("address").value,
-
-
-notes:
-
-document.getElementById("notes").value
-
+notes: document.getElementById("notes").value
 
 };
-
 
 
 let customers=getCustomers();
@@ -319,6 +303,13 @@ html += `
 ${c.name}
 
 </h3>
+
+<p>
+
+Status:
+<strong>${c.status}</strong>
+
+</p>
 
 
 📞 ${c.phone}
