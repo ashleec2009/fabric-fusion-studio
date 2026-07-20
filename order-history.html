@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Order History</title>
+
+</head>
+
+
+<body>
+
+<h1>
+📚 Order History
+</h1>
+
+
+<div id="historyList">
+
+</div>
+
+
+<script>
+
+
+let history = JSON.parse(
+
+localStorage.getItem("orderHistory")
+
+) || [];
+
+
+
+let container = document.getElementById(
+
+"historyList"
+
+);
+
+
+
+if(history.length === 0){
+
+container.innerHTML =
+
+"<p>No completed orders yet.</p>";
+
+}
+
+
+
+history.forEach(function(order){
+
+
+container.innerHTML += `
+
+<div>
+
+<h2>
+${order.customer}
+</h2>
+
+<p>
+${order.product}
+</p>
+
+<p>
+Status: 🎉 Delivered
+</p>
+
+
+</div>
+
+`;
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
