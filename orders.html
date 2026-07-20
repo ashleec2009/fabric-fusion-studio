@@ -475,7 +475,40 @@ document.getElementById("orders").innerHTML=html;
 
 }
 
+function editOrder(id){
 
+let orders = JSON.parse(
+localStorage.getItem("orders")
+) || [];
+
+
+let order = orders.find(
+o => o.id === id
+);
+
+
+let newProduct = prompt(
+"Edit Product:",
+order.product
+);
+
+
+if(newProduct !== null){
+
+order.product = newProduct;
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+showOrders();
+
+}
+
+}
 
 loadCustomers();
 
