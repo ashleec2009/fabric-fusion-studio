@@ -187,7 +187,66 @@ Choose Customer
 </div>
 
 
+<div id="creationPanel" class="card" style="display:none;">
 
+<h2>
+✨ Creation Studio
+</h2>
+
+
+<select id="newCustomer">
+
+<option value="">
+Choose Customer
+</option>
+
+</select>
+
+
+<input id="newProduct" placeholder="Product / Custom Idea">
+
+
+<input id="newQuantity" placeholder="Quantity">
+
+
+<input id="newDue" type="date">
+
+
+<select id="newAssigned">
+
+<option>
+👩 Ashlee
+</option>
+
+<option>
+👨 Garrett
+</option>
+
+<option>
+👥 Fusion Fam
+</option>
+
+</select>
+
+
+<textarea id="newNotes" placeholder="Creation Notes"></textarea>
+
+
+<button onclick="saveNewCreation()">
+
+💾 Save Creation
+
+</button>
+
+
+<button onclick="closeCreationStudio()">
+
+❌ Cancel
+
+</button>
+
+
+</div>
 
 <div id="orders"></div>
 
@@ -620,6 +679,23 @@ JSON.stringify(orders)
 showOrders();
 
 }  
+
+function openCreationStudio(){
+
+document.getElementById(
+"creationPanel"
+).style.display="block";
+
+}
+
+
+function closeCreationStudio(){
+
+document.getElementById(
+"creationPanel"
+).style.display="none";
+
+}
   
 </script>
 
