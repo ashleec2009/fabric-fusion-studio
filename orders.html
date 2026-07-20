@@ -710,6 +710,72 @@ document.getElementById(
 
 function closeCreationStudio(){
 
+function saveNewCreation(){
+
+let orders = JSON.parse(
+localStorage.getItem("orders")
+) || [];
+
+
+let newOrder = {
+
+id: Date.now(),
+
+customer: document.getElementById(
+"newCustomer"
+).value,
+
+
+product: document.getElementById(
+"newProduct"
+).value,
+
+
+quantity: document.getElementById(
+"newQuantity"
+).value,
+
+
+due: document.getElementById(
+"newDue"
+).value,
+
+
+assigned: document.getElementById(
+"newAssigned"
+).value,
+
+
+status: "✨ New Creation",
+
+
+notes: document.getElementById(
+"newNotes"
+).value
+
+};
+
+
+orders.push(newOrder);
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+closeCreationStudio();
+
+
+showOrders();
+
+
+}
+  
 document.getElementById(
 "creationPanel"
 ).style.display="none";
