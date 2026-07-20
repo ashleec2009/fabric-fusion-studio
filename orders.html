@@ -710,6 +710,20 @@ document.getElementById(
 
 function closeCreationStudio(){
 
+document.getElementById(
+"creationPanel"
+).style.display="none";
+
+
+document.getElementById("newProduct").value="";
+document.getElementById("newQuantity").value="";
+document.getElementById("newDue").value="";
+document.getElementById("newNotes").value="";
+
+}
+
+
+
 function saveNewCreation(){
 
 let orders = JSON.parse(
@@ -772,19 +786,6 @@ closeCreationStudio();
 
 
 showOrders();
-
-
-}
-  
-document.getElementById(
-"creationPanel"
-).style.display="none";
-
-
-document.getElementById("newProduct").value="";
-document.getElementById("newQuantity").value="";
-document.getElementById("newDue").value="";
-document.getElementById("newNotes").value="";
 
 }
   
