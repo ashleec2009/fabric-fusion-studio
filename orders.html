@@ -444,6 +444,11 @@ ${o.status}
 
 </button>
 
+<button onclick="confirmDeleteOrder(${o.id})">
+
+🗑️ Delete Order
+
+</button>
 
 <br><br>
 
@@ -529,6 +534,50 @@ completeOrder(id);
 }
 
 }
+
+function confirmDeleteOrder(id){
+
+let answer = confirm(
+"Are you sure you want to delete this order?"
+);
+
+
+if(answer){
+
+deleteOrder(id);
+
+}
+
+}
+
+function deleteOrder(id){
+
+let orders = JSON.parse(
+
+localStorage.getItem("orders")
+
+) || [];
+
+
+orders = orders.filter(
+
+o => o.id !== id
+
+);
+
+
+localStorage.setItem(
+
+"orders",
+
+JSON.stringify(orders)
+
+);
+
+
+showOrders();
+
+}  
   
 </script>
 
