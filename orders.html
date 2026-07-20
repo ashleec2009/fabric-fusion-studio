@@ -438,7 +438,7 @@ ${o.status}
 </button>
 
 
-<button onclick="completeOrder(${o.id})">
+<button onclick="confirmDelivery(${o.id})">
 
 🎉 Delivered
 
@@ -515,6 +515,21 @@ showOrders();
 
 }
 
+function confirmDelivery(id){
+
+let answer = confirm(
+"Are you sure you want to mark this order as delivered?"
+);
+
+
+if(answer){
+
+completeOrder(id);
+
+}
+
+}
+  
 </script>
 
 
