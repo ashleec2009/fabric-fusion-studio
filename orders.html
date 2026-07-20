@@ -438,7 +438,7 @@ ${o.status}
 </button>
 
 
-<button onclick="updateStatus(${o.id}, '🎉 Delivered')">
+<button onclick="completeOrder(${o.id})">
 
 🎉 Delivered
 
@@ -470,7 +470,50 @@ loadCustomers();
 
 showOrders();
 
+function completeOrder(id){
 
+let orders = JSON.parse(
+localStorage.getItem("orders")
+) || [];
+
+
+let order = orders.find(
+o => o.id === id
+);
+
+
+let history = JSON.parse(
+localStorage.getItem("orderHistory")
+) || [];
+
+
+order.status = "🎉 Delivered";
+
+
+history.push(order);
+
+
+localStorage.setItem(
+"orderHistory",
+JSON.stringify(history)
+);
+
+
+orders = orders.filter(
+o => o.id !== id
+);
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+showOrders();
+
+
+}
 
 </script>
 
