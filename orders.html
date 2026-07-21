@@ -512,21 +512,7 @@ orders.forEach(function(o){
 
 html += `
 
-
-.rush-order{
-border-left:8px solid red;
-box-shadow:0 6px 20px rgba(255,0,0,.35);
-}
-
-.priority-order{
-border-left:8px solid gold;
-box-shadow:0 6px 20px rgba(255,215,0,.25);
-}
-
-.standard-order{
-border-left:8px solid hotpink;
-}
-
+<div class="order ${o.priority === "🔴 Rush" ? "rush-order" : o.priority === "🟡 Priority" ? "priority-order" : "standard-order"}">
 
 <h3>
 ${o.product}
